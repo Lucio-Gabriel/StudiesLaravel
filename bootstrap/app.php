@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\Test1;
+use App\Http\Middleware\Test2;
 use App\Http\Middleware\TestMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -13,7 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        
+        $middleware->appendToGroup('test', [
+            Test1::class,
+            Test2::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

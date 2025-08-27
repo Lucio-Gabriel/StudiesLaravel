@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware(Test1::class);
 
-Route::middleware([Test1::class, Test2::class])->group(function () {
+Route::middleware('test')->group(function () {
     Route::get('/users', function () {
         return ['users'];
     });
